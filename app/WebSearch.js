@@ -183,7 +183,7 @@ jQuery(function() {
 	var cacheIndicator = $("#cacheIndicator");
 	var appCache = window.applicationCache;
 	var updateCacheIndicator = function(ev){
-		switch(cache.status){
+		switch(appCache.status){
 			case 0: // uncached
 				cacheIndicator.css({
 					backgroundColor: "red"
@@ -218,9 +218,13 @@ jQuery(function() {
 	appCache.addEventListener('progress', updateCacheIndicator, false);
 	appCache.addEventListener('updateready', updateCacheIndicator, false);
 	appCache.addEventListener('error', function(err){
-		alert("Cache error: " + JSON.stringify(err));
+		var err = [];
+		for(var idx=0; idx<arguments.length; idx++){
+			err[idx] = arguments[idx];
+		}
+		alert("Cache error: " + appCache.status + " [" + err.join(", ") + "]");
 	}, false);
-	
+	updateCacheIndicator();
 //	$.WSLog("Search THIS ", searchField[0]);
 	
 	document.body.ontouchmove = function(event){
