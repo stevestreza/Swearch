@@ -1,0 +1,376 @@
+body{
+	background-color: black;
+	padding-top:1px;
+}
+
+div{
+	background-repeat: no-repeat;
+}
+
+.left{
+	width: 50%;
+	height: auto;
+	float: left;
+	text-align: left;
+}
+
+.right{
+	width: 50%;
+	height: auto;
+	float:right;
+	text-align: right;
+}
+
+#body{
+	padding: 0px;
+	margin: 0px;
+	width: 320px;
+	height: 460px;
+	position: relative;
+	top:0px;
+	left:0px;
+}
+
+#content{
+	position: absolute;
+	left:0px;
+	top:0px;
+	width:320px;
+	height:460px;
+	z-index:0;
+}
+
+#searchBar{
+	position: absolute;
+	left:30px;
+	top:125px;
+	background-image:url(searchBG.png);
+	width:260px;
+	height: 42px;
+	display:block;
+	background-repeat:none;
+	z-index: 10;
+}
+
+#searchField {
+	outline:none;
+	border:none;
+	font-size:20px;
+	width: 197px;
+	height: 26px;
+	display:inline;
+	float:left;
+	position:relative;
+	top: 3px;
+	left: 3px;
+	-webkit-appearance: none;
+	background-color: #EAEAEA;
+}
+
+#searchButton{
+	width:33px;
+	height:33px;
+	float:right;
+	right:5px;
+	top:  5px;
+	position:absolute;
+	z-index:50;
+}
+
+#settingsButton{
+	position: absolute;
+	right:30px;
+	top: 422px;
+	width: 29px;
+	height: 29px;
+	background-image: url(settings.png);
+	z-index:19;
+}
+
+#settingsBackground{
+	position: absolute;
+	left:0px;
+	top:0px;
+	width: 320px;
+	height: 460px;
+	background-color: rgba(0,0,0,0.76);
+	display:none;
+	z-index:20;
+}
+
+#settingsPopup{
+	background-image: url(settings-popup.png);
+	position: absolute;
+	right:22px;
+	top:361px;
+	width: 274px;
+	height: 62px;
+}
+
+#signature{
+	width: 260px;
+	height: 2em;
+	position: relative;
+	left: 30px;
+	top: 175px;
+	font-family: "Helvetica Neue";
+	color: white;
+	text-shadow: #000 0px 1px 1px;
+	font-size: 14px;
+}
+
+#signature #title{
+	font-weight: bold;
+}
+
+#signature a{
+	color: #95CBFF;
+	text-decoration: none;
+}
+
+/* Searches */
+
+#content{
+	width:320px;
+	overflow:hidden;
+	position: absolute;
+	left:0px;
+	top:0px;
+}
+
+#searchList{
+	position:relative;
+	left: 0px;
+	width: 960px;
+	-webkit-transform: translate3D(0px, 0px, 0px);
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transition-duration: 1ms;
+}
+
+.animating#searchList{
+	-webkit-transition-duration: 400ms;
+}
+
+#searchList .page{
+	width:320px;
+	height:460px;
+	float:left;
+	position:relative;
+}
+
+#searchGoogle{
+	background-color: white;
+}
+
+#searchWikipedia{
+	background-image: url(wikipedia-bg.png);
+}
+
+#searchBing{
+	background-image: url(bing-bg.jpg);
+}
+
+#bingBackground{
+	position:relative;
+	width:320px;
+	height:460px;
+	left:0px;
+	top:0px;
+	overflow:hidden;
+	z-index:0;
+}
+
+#bingBackground > *{
+	background-size:100%;
+}
+
+#googleLogo{
+	background-image: url(google-logo.png);
+	position: relative;
+	left: 72px;
+	top: 50px;
+	width:169px;
+	height:91px;
+	z-index: 200;
+}
+
+#bingLogo{
+	background-image: url(bing-logo.png);
+	position: absolute;
+	left: 75px;
+	top: 47px;
+	width:176px;
+	height:85px;
+	z-index: 200;
+}
+
+#searchFlickr{
+	background-color:white;
+}
+
+#flickrLogo{
+	background-image: url(flickr-logo.png);
+	position: relative;
+	left:91px;
+	top:53px;
+	width:133px;
+	height:40px;
+}
+
+#searchTwitter{
+/*	background-image: url(twitter-search.png); */
+	background: -webkit-gradient(linear, left top, left bottom, from(#4191b7), to(#5da7cb));
+}
+
+#twitterLogo{
+	background-image: url(twitter-logo.png);
+	position:relative;
+	width:320px;
+	height: 173px;
+	left:0px;
+	top:0px;
+}
+
+#tooltip{
+	width: 100%;
+	background-color:black;
+	text-align:center;
+	color:white;
+	font-family: "Helvetica";
+	position:relative;
+	top:-2em;
+	left:0px;
+	font-size: 12px;
+	font-weight: bold;
+	opacity: 0.80;
+	padding-top:0.5em;
+	padding-bottom:0.5em;
+	border-bottom: 1px solid #3a3a3a;
+}
+
+#home-screen-hud{
+	background-image: url(home-screen-hud.png);
+	width:190px;
+	height:143px;
+	position:relative;
+	left:64px;
+	top:336px;
+	opacity: 0;
+}
+
+/* Clouds */
+
+#twitterBackground{
+	position:relative;
+	width:320px;
+	height:460px;
+	left:0px;
+	top:0px;
+	overflow:hidden;
+}
+
+.cloud{
+	position: absolute;
+	display: block;
+	left:0px;
+	top:0px;
+	-webkit-transition-property: -webkit-transform;
+	-webkit-transform: translate3D(0px, 0px, 0px);
+}
+
+.cloud1-1{
+	background-image: url(cloud1-1.png);
+	width: 314px;
+	height: 251px;
+}
+
+.cloud1-2{
+	background-image: url(cloud1-2.png);
+	width: 236px;
+	height: 188px;
+}
+
+.cloud1-3{
+	background-image: url(cloud1-3.png);
+	width: 157px;
+	height: 126px;
+}
+
+.cloud2-1{
+	background-image: url(cloud2-1.png);
+	width: 293px;
+	height: 241px;
+}
+
+.cloud2-2{
+	background-image: url(cloud2-2.png);
+	width: 220px;
+	height: 181px;
+}
+
+.cloud2-3{
+	background-image: url(cloud2-3.png);
+	width: 147px;
+	height: 121px;
+}
+
+.cloud3-1{
+	background-image: url(cloud3-1.png);
+	width: 269px;
+	height: 204px;
+}
+
+.cloud3-2{
+	background-image: url(cloud3-2.png);
+	width: 202px;
+	height: 153px;
+}
+
+.cloud3-3{
+	background-image: url(cloud3-3.png);
+	width: 135px;
+	height: 102px;
+}
+
+.switch{
+	width: 57px;
+	height: 24px;
+	background-image: url(switch-background.png);
+}
+
+.switch .switchHandle{
+	width:27px;
+	height:23px;
+	position:relative;
+	left:1px;
+	top:0px;
+	background-image: url(switch-handle.png);
+}
+
+#animatedBackgrounds{
+	position: absolute;
+	top: 377px;
+	left: 228px;
+	z-index: 100;
+}
+
+#debug{
+	background-color: black;
+	color: white;
+	z-index:10000;
+	position:relative;
+	left:0px
+	top: 0px;
+}
+
+#cacheIndicator{
+	position: absolute;
+	left:30px;
+	top: 378px;
+	width: 12px;
+	height: 12px;
+	border-radius: 6px;
+	z-index:19;
+	background-color: red;
+	border: 1px solid black;
+}

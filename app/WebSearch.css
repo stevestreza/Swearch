@@ -1,0 +1,12 @@
+body{
+	padding:0px;
+	margin:0px;
+}
+
+.clear{
+	clear:both;
+}
+
+#searchButton{
+	background-image:url(searchButton.png);
+}
