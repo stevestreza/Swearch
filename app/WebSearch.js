@@ -218,7 +218,7 @@ jQuery(function() {
 	appCache.addEventListener('progress', updateCacheIndicator, false);
 	appCache.addEventListener('updateready', updateCacheIndicator, false);
 	appCache.addEventListener('error', function(err){
-		alert("Cache error: " + err);
+		alert("Cache error: " + JSON.stringify(err));
 	}, false);
 	
 //	$.WSLog("Search THIS ", searchField[0]);
