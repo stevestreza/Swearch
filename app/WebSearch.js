@@ -217,7 +217,7 @@ jQuery(function() {
 	appCache.addEventListener('noupdate', updateCacheIndicator, false);
 	appCache.addEventListener('progress', updateCacheIndicator, false);
 	appCache.addEventListener('updateready', updateCacheIndicator, false);
-	appCache.addEventListener('error', function(err){
+	appCache.addEventListener('error', function(){
 		var err = [];
 		for(var idx=0; idx<arguments.length; idx++){
 			err[idx] = arguments[idx];
