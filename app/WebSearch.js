@@ -222,7 +222,7 @@ jQuery(function() {
 		for(var key in err){
 			dict[key] = err[key];
 		}
-		alert(JSON.stringify(dict));
+		$.WSLog(JSON.stringify(dict));
 	}, false);
 	updateCacheIndicator();
 //	$.WSLog("Search THIS ", searchField[0]);
