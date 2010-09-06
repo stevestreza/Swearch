@@ -24,10 +24,10 @@ var processPath = function(thePath){
 		stylesheets.push(thePath);
 	}else if(/.*\.js/.test(thePath)){
 		scripts.push(thePath);
-	}else if(/.*\.html/.test(thePath)){
+	}else if(/.*\.html/.test(thePath) && !(/.*-dev\.html/.test(thePath))){
 		meta.push(thePath);
-	}else if(/.*\.xml/.test(thePath) || /.*\.rss/.test(thePath)) {
-		meta.push(thePath);
+//	}else if(/.*\.xml/.test(thePath) || /.*\.rss/.test(thePath)) {
+//		meta.push(thePath);
 	}else{
 		sys.puts("Cannot process " + thePath);
 	}
