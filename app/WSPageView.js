@@ -33,7 +33,7 @@ $.fn.PageView = function(pages){
 			if(page >= self[0].pages.length) page = self[0].pages.length - 1;
 			animated = ((animated == false) ? false : true);
 			
-			$.WSLog("Changing page from ", self[0].currentPageIndex, " to ", page);
+//			$.WSLog("Changing page from ", self[0].currentPageIndex, " to ", page);
 			
 			if(self[0].currentPageIndex != undefined){
 				var oldPage = pages[self[0].currentPageIndex];
@@ -58,13 +58,13 @@ $.fn.PageView = function(pages){
 					"-webkit-transform" : "translate3D(" + leftOffset + "px, 0px, 0px)"
 				};
 
-				$.WSLog("Animating p" + page + ": " + leftOffset);
+//				$.WSLog("Animating p" + page + ": " + leftOffset);
 
 				if(animated){
 					self.addClass("animating");
 					self.css(options);
 					setTimeout(function(){
-						$.WSLog("Removing animating class");
+//						$.WSLog("Removing animating class");
 						$.WSLog.ClearStack();
 						self.removeClass("animating");
 					}, 400);
@@ -86,7 +86,7 @@ $.fn.PageView = function(pages){
 		
 		self.css({width: 320 * pages.length});
 		
-		$.WSLog("Binding touch events");
+//		$.WSLog("Binding touch events");
 		this.addEventListener("touchstart", function(event){
 			self.removeClass("animating");
 			
@@ -94,14 +94,16 @@ $.fn.PageView = function(pages){
 			var startX = touch.pageX;
 			var startOffset = lastOffset; //(parseInt(self.css("left"), 10));
 			$.WSLog("" + startX + " " + startOffset)
+			
+			var tracker = new WSVelocityTracker();
+			var addPoint = function(x,y){
+				tracker.addPoint(x,y, new Date().getTime())
+			}
+			
 			var touchMove = function(event){
 				var touch = event.touches[0];
 				var pan = (touch.pageX % 320);
 				var offset = (startX - pan);
-
-				$.WSLog("" + startX + " " + startOffset + " " + pan + " " + offset + " == " + 
-					(startOffset - offset) + " (" + ((Math.abs(startOffset-offset) + 160)/320) + ")" );
-				$.WSLog.ClearStack();
 
 				var leftOffset = startOffset - offset;
 				if(leftOffset > 0){
@@ -109,17 +111,25 @@ $.fn.PageView = function(pages){
 				}
 				self.css({
 					"-webkit-transform": "translate3D(" + leftOffset + "px, 0px, 0px)"
-				})
+				});
+
+				addPoint(touch.pageX, touch.pageY);
 			}
 			var touchEnd = function(endEvent){
 				var distance = startX - touch.pageX;
-				var neededDistance = 320 / 5.;
+				var neededDistance = 320 / 2.;
 				
-				$.WSLog("Ended: distance of " + distance + " needing " + neededDistance);
+				var velocity = 0 - tracker.computeCurrentVelocity(1000).x;
+				var neededVelocity = 320.;
+				
+//				$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
+//				alert("Velocity: " + velocity);
 				
 				var page = self[0].currentPageIndex;
 				if(distance > neededDistance || (0-distance) > neededDistance){
 					page = page + (distance > 0 ? 1 : -1);
+				}else if(velocity > neededVelocity || (0-velocity) > neededVelocity){
+					page = page + (velocity > 0 ? 1 : -1);
 				}
 				
 				lastOffset = changePage( page, true)
