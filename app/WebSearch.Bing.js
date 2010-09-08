@@ -36,6 +36,7 @@ $.PageView.Bing = {
 
 		$.get("bing.xml",
 		function(data, textStatus, httpRequest){
+			return;
 			var images = $(data).find("image").each(function(){
 				url = $(this).find("url").text();
 				url = "http://bing.com" + url;
