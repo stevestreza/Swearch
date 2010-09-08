@@ -26,7 +26,7 @@ $.fn.PageView = function(pages){
 			}
 		}
 		
-		var changePage = function(page, animated){
+		var changePage = function(page, animated, bounces){
 //			$.WSLog("pages - " + pages + " - index - " + self[0].currentPageIndex);
 //			if(page == self[0].currentPageIndex) return;
 			if(!page || page < 0) page = 0;
@@ -121,18 +121,24 @@ $.fn.PageView = function(pages){
 				
 				var velocity = 0 - tracker.computeCurrentVelocity(1000).x;
 				var neededVelocity = 320.;
+				var bounceVelocity = 1600.;
 				
 //				$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
 //				alert("Velocity: " + velocity);
 				
+				var bounces = false;
+				
 				var page = self[0].currentPageIndex;
 				if(distance > neededDistance || (0-distance) > neededDistance){
 					page = page + (distance > 0 ? 1 : -1);
+				}else if(velocity > bounceVelocity || (0-velocity) > bounceVelocity){
+					page = page + (velocity > 0 ? 1 : -1);
+					bounces = true;
 				}else if(velocity > neededVelocity || (0-velocity) > neededVelocity){
 					page = page + (velocity > 0 ? 1 : -1);
 				}
 				
-				lastOffset = changePage( page, true)
+				lastOffset = changePage( page, true, bounces)
 				
 				this.removeEventListener("touchmove",touchMove);
 				this.removeEventListener("touchend",touchEnd);
