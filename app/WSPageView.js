@@ -57,7 +57,7 @@ $.fn.PageView = function(pages){
 				}
 
 				var leftOffset = (0-(page * PAGE_WIDTH));
-				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / PAGE_WIDTH) * (10./7.));
+				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / PAGE_WIDTH) * 4.);
 				
 				var finish = {
 					"-webkit-transform" : "translate3D(" + leftOffset + "px, 0px, 0px)"
@@ -135,7 +135,9 @@ $.fn.PageView = function(pages){
 
 				var leftOffset = startOffset - offset;
 				if(leftOffset > 0){
-//					leftOffset = Math.exp(Math.abs(leftOffset));
+					leftOffset = leftOffset / 2.;
+				}else if(leftOffset < 0-(PAGE_WIDTH * (pages.length - 1))){
+					leftOffset += (offset / 2.);
 				}
 				self.css({
 					"-webkit-transform": "translate3D(" + leftOffset + "px, 0px, 0px)"
@@ -149,7 +151,7 @@ $.fn.PageView = function(pages){
 				
 				var velocity = 0 - tracker.computeCurrentVelocity(1000).x;
 				var neededVelocity = PAGE_WIDTH;
-				var bounceVelocity = PAGE_WIDTH * 4.;
+				var bounceVelocity = PAGE_WIDTH * 5.;
 				
 //				$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
 				

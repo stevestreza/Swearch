@@ -147,18 +147,18 @@ div{
 }
 
 .animating#searchList{
-	-webkit-transition-duration: 300ms;
+	-webkit-transition-duration: 350ms;
 	-webkit-transition-timing-function: cubic-bezier(0.4, 1.0, 0.4, 1.0);
 }
 
 .animatingFast#searchList{
-	-webkit-transition-duration: 175ms;
+	-webkit-transition-duration: 200ms;
 	-webkit-transition-timing-function: ease-out;
 }
 
 .animatingSnapBack#searchList{
-	-webkit-transition-duration: 175ms;
-	-webkit-transition-timing-function: ease-out;
+	-webkit-transition-duration: 250ms;
+	-webkit-transition-timing-function: ease-in-out;
 }
 
 #searchList .page{
