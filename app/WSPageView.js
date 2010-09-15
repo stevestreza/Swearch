@@ -1,5 +1,7 @@
 (function($){
 	
+var PAGE_WIDTH = 320;
+	
 $.fn.PageView = function(pages){
 	return this.each(function(){
 		var self = $(this);
@@ -54,8 +56,8 @@ $.fn.PageView = function(pages){
 					newPage.appear(newPage.page);
 				}
 
-				var leftOffset = (0-(page * 320));
-				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / 320.) * (10./7.));
+				var leftOffset = (0-(page * PAGE_WIDTH));
+				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / PAGE_WIDTH) * (10./7.));
 				
 				var finish = {
 					"-webkit-transform" : "translate3D(" + leftOffset + "px, 0px, 0px)"
@@ -110,7 +112,7 @@ $.fn.PageView = function(pages){
 			generatePage(idx);
 		}
 		
-		self.css({width: 320 * pages.length});
+		self.css({width: PAGE_WIDTH * pages.length});
 		
 //		$.WSLog("Binding touch events");
 		this.addEventListener("touchstart", function(event){
@@ -128,7 +130,7 @@ $.fn.PageView = function(pages){
 			
 			var touchMove = function(event){
 				var touch = event.touches[0];
-				var pan = (touch.pageX % 320);
+				var pan = (touch.pageX % PAGE_WIDTH);
 				var offset = (startX - pan);
 
 				var leftOffset = startOffset - offset;
@@ -143,11 +145,11 @@ $.fn.PageView = function(pages){
 			}
 			var touchEnd = function(endEvent){
 				var distance = startX - touch.pageX;
-				var neededDistance = 320 / 2.;
+				var neededDistance = PAGE_WIDTH / 2.;
 				
 				var velocity = 0 - tracker.computeCurrentVelocity(1000).x;
-				var neededVelocity = 320.;
-				var bounceVelocity = 1600.;
+				var neededVelocity = PAGE_WIDTH;
+				var bounceVelocity = PAGE_WIDTH * 4.;
 				
 //				$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
 				
