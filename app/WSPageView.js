@@ -26,12 +26,13 @@ $.fn.PageView = function(pages){
 			}
 		}
 		
-		var changePage = function(page, animated, bounces){
+		var changePage = function(page, animated, bounceFactor){
 //			$.WSLog("pages - " + pages + " - index - " + self[0].currentPageIndex);
 //			if(page == self[0].currentPageIndex) return;
 			if(!page || page < 0) page = 0;
 			if(page >= self[0].pages.length) page = self[0].pages.length - 1;
 			animated = ((animated == false) ? false : true);
+			if(!bounceFactor || (bounceFactor > -1 && bounceFactor < 1)) bounceFactor = undefined;
 			
 //			$.WSLog("Changing page from ", self[0].currentPageIndex, " to ", page);
 			
@@ -54,20 +55,45 @@ $.fn.PageView = function(pages){
 				}
 
 				var leftOffset = (0-(page * 320));
-				var options = {
+				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / 320.) * (10./7.));
+				
+				var finish = {
 					"-webkit-transform" : "translate3D(" + leftOffset + "px, 0px, 0px)"
 				};
+				var options = finish;
 
 //				$.WSLog("Animating p" + page + ": " + leftOffset);
 
 				if(animated){
-					self.addClass("animating");
-					self.css(options);
-					setTimeout(function(){
+					var finishAnimatingPage = function(){
 //						$.WSLog("Removing animating class");
 						$.WSLog.ClearStack();
 						self.removeClass("animating");
-					}, 400);
+						self.removeClass("animatingFast");
+						self.removeClass("animatingSnapBack");
+					};
+					
+					if(bounceFactor){
+						self.addClass("animatingFast");
+						options = {
+							"-webkit-transform" : "translate3D(" + leftSnapOffset + "px, 0px, 0px)"
+						};
+//						alert("Bouncing from " + leftSnapOffset + " to " + leftOffset);
+					}else{
+						self.addClass("animating");
+					}
+					
+					self.css(options);
+					
+					if(bounceFactor){
+						setTimeout(function(){
+							self.removeClass("animatingFast");
+							self.addClass("animatingSnapBack");
+							self.css(finish);
+							setTimeout(finishAnimatingPage, 175);
+						},175);
+					}
+					setTimeout(finishAnimatingPage, 400);
 				}else{
 					self.css(options);
 				}
@@ -124,18 +150,17 @@ $.fn.PageView = function(pages){
 				var bounceVelocity = 1600.;
 				
 //				$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
-//				alert("Velocity: " + velocity);
 				
-				var bounces = false;
+				var bounces = undefined;
 				
 				var page = self[0].currentPageIndex;
-				if(distance > neededDistance || (0-distance) > neededDistance){
+				if((velocity > bounceVelocity) || ((0-velocity) > bounceVelocity)){
+					page = page + (velocity > 0 ? 1 : -1);
+					bounces = velocity;
+				}else if((velocity > neededVelocity) || ((0-velocity) > neededVelocity)){
+					page = page + (velocity > 0 ? 1 : -1);
+				}else if((distance > neededDistance) || ((0-distance) > neededDistance)){
 					page = page + (distance > 0 ? 1 : -1);
-				}else if(velocity > bounceVelocity || (0-velocity) > bounceVelocity){
-					page = page + (velocity > 0 ? 1 : -1);
-					bounces = true;
-				}else if(velocity > neededVelocity || (0-velocity) > neededVelocity){
-					page = page + (velocity > 0 ? 1 : -1);
 				}
 				
 				lastOffset = changePage( page, true, bounces)

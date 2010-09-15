@@ -151,6 +151,16 @@ div{
 	-webkit-transition-timing-function: cubic-bezier(0.4, 1.0, 0.4, 1.0);
 }
 
+.animatingFast#searchList{
+	-webkit-transition-duration: 175ms;
+	-webkit-transition-timing-function: ease-out;
+}
+
+.animatingSnapBack#searchList{
+	-webkit-transition-duration: 175ms;
+	-webkit-transition-timing-function: ease-out;
+}
+
 #searchList .page{
 	width:320px;
 	height:460px;
