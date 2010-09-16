@@ -150,6 +150,7 @@ jQuery(function() {
 	searchField.focus();
 	
 	var performSearch = function(){
+		searchField.blur();
 		var searchTerm = searchField[0].value;
 		var page = pages[searchList[0].currentPageIndex];
 		page.search(searchTerm);
@@ -229,7 +230,7 @@ jQuery(function() {
 		$.WSLog(JSON.stringify(dict));
 	}, false);
 	updateCacheIndicator();
-//	$.WSLog("Search THIS ", searchField[0]);
+//	$.WSLog("Search THIS ", searchField[0]);\n
 	
 	document.body.ontouchmove = function(event){
 		if(!debug){
@@ -237,9 +238,9 @@ jQuery(function() {
 		}
 	};
 	
-	window.onscroll = function(e){
+	setInterval(function(e){
 		if(window.scrollY > 1){
 			window.scrollTo(0,1);
 		}
-	}
+	}, 500);
 });
