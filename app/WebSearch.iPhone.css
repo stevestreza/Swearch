@@ -158,7 +158,7 @@ div{
 
 .animatingSnapBack#searchList{
 	-webkit-transition-duration: 250ms;
-	-webkit-transition-timing-function: ease-in-out;
+	-webkit-transition-timing-function: linear;
 }
 
 #searchList .page{

@@ -57,7 +57,7 @@ $.fn.PageView = function(pages){
 				}
 
 				var leftOffset = (0-(page * PAGE_WIDTH));
-				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / PAGE_WIDTH) * 4.);
+				var leftSnapOffset = Math.round(leftOffset - (bounceFactor / PAGE_WIDTH) * 3.5);
 				
 				var finish = {
 					"-webkit-transform" : "translate3D(" + leftOffset + "px, 0px, 0px)"
@@ -73,10 +73,19 @@ $.fn.PageView = function(pages){
 						self.removeClass("animating");
 						self.removeClass("animatingFast");
 						self.removeClass("animatingSnapBack");
+						self.css({"-webkit-transition-duration": "inherit"});
 					};
 					
 					if(bounceFactor){
-						self.addClass("animatingFast");
+						var slowdown = Math.floor(Math.abs(bounceFactor / 40.));
+						var firstStageSpeed  = 250 - slowdown;
+						var secondStageSpeed = 150 + slowdown;
+						
+//						alert("Slowing down by " + slowdown + "ms, from " + firstStageSpeed + " to " + secondStageSpeed);
+						
+						self.addClass("animatingFast").css({
+							"-webkit-transition-duration": "" + firstStageSpeed + "ms"
+						});
 						options = {
 							"-webkit-transform" : "translate3D(" + leftSnapOffset + "px, 0px, 0px)"
 						};
@@ -90,7 +99,9 @@ $.fn.PageView = function(pages){
 					if(bounceFactor){
 						setTimeout(function(){
 							self.removeClass("animatingFast");
-							self.addClass("animatingSnapBack");
+							self.addClass("animatingSnapBack").css({
+								"-webkit-transition-duration": "" + secondStageSpeed + "ms"
+							});
 							self.css(finish);
 							setTimeout(finishAnimatingPage, 175);
 						},175);
