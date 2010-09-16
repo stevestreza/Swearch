@@ -51,7 +51,7 @@ jQuery(function() {
 		}
 	}
 	
-	if(!$.WSConfig.get("WSAnimateBackgrounds")) $.WSConfig.set("WSAnimateBackgrounds", true);
+	if(!$.WSConfig.get("WSOpenInSafari")) $.WSConfig.set("WSOpenInSafari", false);
 	
 	var displayHomeScreenHUDIfNeeded = function(){
 		var alreadyHidden = $.WSConfig.get("HomeScreenHUDHidden");
@@ -149,11 +149,15 @@ jQuery(function() {
 	var searchField = $("#searchField");
 	searchField.focus();
 	
-	$("#searchButton").click(function(){
+	var performSearch = function(){
 		var searchTerm = searchField[0].value;
 		var page = pages[searchList[0].currentPageIndex];
 		page.search(searchTerm);
-	})
+		return false;
+	};
+
+	$("#searchButton").click(performSearch);
+	$("#searchForm").bind("submit", performSearch);
 	
 	$.get("WSSwitch.js", function(){
 		var settingsBackground = $("#settingsBackground");
@@ -164,10 +168,10 @@ jQuery(function() {
 		settingsBackground.append(settingsPopup);
 
 		if(!bgSwitch){
-			bgSwitch = settingsBackground.find("#animatedBackgrounds");
-			bgSwitch.Switch($.WSConfig.get("WSAnimateBackgrounds"), function(state){
+			bgSwitch = settingsBackground.find("#openInSafari");
+			bgSwitch.Switch($.WSConfig.get("WSOpenInSafari"), function(state){
 				state = (state == true ? 1 : 0);
-				$.WSConfig.set("WSAnimateBackgrounds",state);
+				$.WSConfig.set("WSOpenInSafari",state);
 				$.WSLog("Setting state to " + state);
 			});
 		}

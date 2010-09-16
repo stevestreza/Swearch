@@ -26,6 +26,7 @@ var StringForNode = function(node, tabs){
 $.PageView.Bing = {
 	pageView: null,
 	setup: function(div){
+		return;
 		var self = $.PageView.Bing;
 		self.pages = [];
 

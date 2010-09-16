@@ -82,14 +82,11 @@ $.PageView.Twitter = {
 	},
 	appear: function(div){
 		var self = $.PageView.Twitter;
-		$.WSLog("self.clouds = " + self.clouds + ", animate? " + $.WSConfig.get("WSAnimateBackgrounds"))
-		if($.WSConfig.get("WSAnimateBackgrounds") == true){
-			setTimeout(function(){
-				$(self.clouds).each(function(){
-					$(this).resume();
-				});
-			}, 500);
-		}
+//			setTimeout(function(){
+//				$(self.clouds).each(function(){
+//					$(this).resume();
+//				});
+//			}, 500);
 	},
 	disappear: function(div){
 		var self = $.PageView.Twitter;
