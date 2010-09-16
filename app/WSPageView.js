@@ -128,7 +128,9 @@ $.fn.PageView = function(pages){
 				tracker.addPoint(x,y, new Date().getTime())
 			}
 			
+			var didPan = false;
 			var touchMove = function(event){
+				didPan = true;
 				var touch = event.touches[0];
 				var pan = (touch.pageX % PAGE_WIDTH);
 				var offset = (startX - pan);
@@ -146,28 +148,30 @@ $.fn.PageView = function(pages){
 				addPoint(touch.pageX, touch.pageY);
 			}
 			var touchEnd = function(endEvent){
-				var distance = startX - touch.pageX;
-				var neededDistance = PAGE_WIDTH / 2.;
-				
-				var velocity = 0 - tracker.computeCurrentVelocity(1000).x;
-				var neededVelocity = PAGE_WIDTH;
-				var bounceVelocity = PAGE_WIDTH * 5.;
-				
-//				$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
-				
-				var bounces = undefined;
-				
-				var page = self[0].currentPageIndex;
-				if((velocity > bounceVelocity) || ((0-velocity) > bounceVelocity)){
-					page = page + (velocity > 0 ? 1 : -1);
-					bounces = velocity;
-				}else if((velocity > neededVelocity) || ((0-velocity) > neededVelocity)){
-					page = page + (velocity > 0 ? 1 : -1);
-				}else if((distance > neededDistance) || ((0-distance) > neededDistance)){
-					page = page + (distance > 0 ? 1 : -1);
+				if(didPan){
+					var distance = startX - touch.pageX;
+					var neededDistance = PAGE_WIDTH / 2.;
+					
+					var velocity = 0 - tracker.computeCurrentVelocity(1000).x;
+					var neededVelocity = PAGE_WIDTH;
+					var bounceVelocity = PAGE_WIDTH * 5.;
+					
+//					$.WSLog("Ended: velocity of " + Math.floor(velocity) + " distance " + Math.floor(distance));
+					
+					var bounces = undefined;
+					
+					var page = self[0].currentPageIndex;
+					if((velocity > bounceVelocity) || ((0-velocity) > bounceVelocity)){
+						page = page + (velocity > 0 ? 1 : -1);
+						bounces = velocity;
+					}else if((velocity > neededVelocity) || ((0-velocity) > neededVelocity)){
+						page = page + (velocity > 0 ? 1 : -1);
+					}else if((distance > neededDistance) || ((0-distance) > neededDistance)){
+						page = page + (distance > 0 ? 1 : -1);
+					}
+					
+					lastOffset = changePage( page, true, bounces)
 				}
-				
-				lastOffset = changePage( page, true, bounces)
 				
 				this.removeEventListener("touchmove",touchMove);
 				this.removeEventListener("touchend",touchEnd);
