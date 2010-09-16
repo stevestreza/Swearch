@@ -59,12 +59,12 @@ $.PageView.Bing = {
 		});
 	},
 	appear: function(div){
-		if($.WSConfig.get("WSAnimateBackgrounds")){
-			$.PageView.Bing.pageView.crossSlideResume();
-		}
+//		if($.WSConfig.get("WSAnimateBackgrounds")){
+//			$.PageView.Bing.pageView.crossSlideResume();
+//		}
 	},
 	disappear: function(div){
-		$.PageView.Bing.pageView.crossSlidePause();
+//		$.PageView.Bing.pageView.crossSlidePause();
 	}
 }
 	
