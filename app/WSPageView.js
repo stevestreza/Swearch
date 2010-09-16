@@ -29,14 +29,10 @@ $.fn.PageView = function(pages){
 		}
 		
 		var changePage = function(page, animated, bounceFactor){
-//			$.WSLog("pages - " + pages + " - index - " + self[0].currentPageIndex);
-//			if(page == self[0].currentPageIndex) return;
 			if(!page || page < 0) page = 0;
 			if(page >= self[0].pages.length) page = self[0].pages.length - 1;
 			animated = ((animated == false) ? false : true);
 			if(!bounceFactor || (bounceFactor > -1 && bounceFactor < 1)) bounceFactor = undefined;
-			
-//			$.WSLog("Changing page from ", self[0].currentPageIndex, " to ", page);
 			
 			if(self[0].currentPageIndex != undefined){
 				var oldPage = pages[self[0].currentPageIndex];
@@ -64,24 +60,20 @@ $.fn.PageView = function(pages){
 				};
 				var options = finish;
 
-//				$.WSLog("Animating p" + page + ": " + leftOffset);
+				var finishAnimatingPage = function(){
+					$.WSLog.ClearStack();
+					self.removeClass("animating");
+					self.removeClass("animatingFast");
+					self.removeClass("animatingSnapBack");
+					self.css({"-webkit-transition-duration": "inherit"});
+					lastOffset = leftOffset;
+				};
 
-				if(animated){
-					var finishAnimatingPage = function(){
-//						$.WSLog("Removing animating class");
-						$.WSLog.ClearStack();
-						self.removeClass("animating");
-						self.removeClass("animatingFast");
-						self.removeClass("animatingSnapBack");
-						self.css({"-webkit-transition-duration": "inherit"});
-					};
-					
+				if(animated){					
 					if(bounceFactor){
 						var slowdown = Math.floor(Math.abs(bounceFactor / 40.));
 						var firstStageSpeed  = 250 - slowdown;
 						var secondStageSpeed = 150 + slowdown;
-						
-//						alert("Slowing down by " + slowdown + "ms, from " + firstStageSpeed + " to " + secondStageSpeed);
 						
 						self.addClass("animatingFast").css({
 							"-webkit-transition-duration": "" + firstStageSpeed + "ms"
@@ -89,7 +81,6 @@ $.fn.PageView = function(pages){
 						options = {
 							"-webkit-transform" : "translate3D(" + leftSnapOffset + "px, 0px, 0px)"
 						};
-//						alert("Bouncing from " + leftSnapOffset + " to " + leftOffset);
 					}else{
 						self.addClass("animating");
 					}
@@ -109,6 +100,7 @@ $.fn.PageView = function(pages){
 					setTimeout(finishAnimatingPage, 400);
 				}else{
 					self.css(options);
+					finishAnimatingPage();
 				}
 				
 				$.WSConfig.set("PageView.Page", ("" + page));
@@ -152,6 +144,8 @@ $.fn.PageView = function(pages){
 				}else if(leftOffset < 0-(PAGE_WIDTH * (pages.length - 1))){
 					leftOffset += (offset / 2.);
 				}
+				
+				$.WSLog("Setting offset to " + leftOffset);
 				self.css({
 					"-webkit-transform": "translate3D(" + leftOffset + "px, 0px, 0px)"
 				});
@@ -199,6 +193,8 @@ $.fn.PageView = function(pages){
 					generatePage(index);
 				}
 			}
+			$.WSLog.ClearStack();
+			changePage(savedPage,false);
 		};
 		
 		setTimeout(nextPage, 100);
@@ -209,8 +205,6 @@ $.fn.PageView = function(pages){
 			savedPage = parseInt(savedPage, 10);
 		}catch(e){
 		}
-		
-		changePage(savedPage,false);
 	});
 }
 })(jQuery);

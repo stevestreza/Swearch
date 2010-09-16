@@ -33,7 +33,7 @@ $.fn.animateWithSpeed = function(opts, speed, easing, callback){
 		
 		opts["-webkit-transition-duration"] = "" + duration + "ms";
 	
-		$.WSLog("Animating from " + currentPosition + " to " + opts["-webkit-transform"] + " - " + delta + "px in " + opts["-webkit-transition-duration"]);
+//		$.WSLog("Animating from " + currentPosition + " to " + opts["-webkit-transform"] + " - " + delta + "px in " + opts["-webkit-transition-duration"]);
 		opts.left = undefined;
 		
 		$(this).css(opts);
