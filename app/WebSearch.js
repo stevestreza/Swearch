@@ -74,20 +74,28 @@ jQuery(function() {
 		}
 	}
 	
+	var openURL = function(url){
+		if($.WSConfig.get("WSOpenInSafari") == true){
+			window.location.href = url;
+		}else{
+			window.location = url;
+		}
+	}
+	
 	var pages = [
 		{ // Google
 			id: "searchGoogle",
 			contents: '<div id="googleLogo"></div>',
 			search: function(term){
 				term = term.replace(" ","+");
-				window.location = "http://www.google.com/search?q="+term+"&ie=UTF-8&oe=UTF-8&hl=en&client=safari";
+				openURL("http://www.google.com/search?q="+term+"&ie=UTF-8&oe=UTF-8&hl=en&client=safari");
 			}
 		}, { // Twitter
 			id: "searchTwitter",
 			contents: '<div id="twitterLogo"></div><div id="twitterBackground"></div>',
 			search:function(term){
 				term = term.replace(" ", "+");
-				window.location = "http://mobile.twitter.com/searches?q=" + term;
+				openURL("http://mobile.twitter.com/searches?q=" + term);
 			},
 			appear: $.PageView.Twitter.appear,
 			disappear: $.PageView.Twitter.disappear,
@@ -97,14 +105,14 @@ jQuery(function() {
 			id: "searchWikipedia",
 			search: function(term){
 				term = term.replace(" ","+");
-				window.location = "http://en.wikipedia.org/w/index.php?title=Special%3ASearch&search=" + term;
+				openURL("http://en.wikipedia.org/w/index.php?title=Special%3ASearch&search=" + term);
 			}
 		}, { // Flickr
  			id: "searchFlickr",
  			contents: '<div id="flickrLogo"></div>',
  			search:function(term){
  				term = term.replace(" ", "+");
- 				window.location = "http://m.flickr.com/#/search/advanced/_QM_q_IS_" + term;
+ 				openURL("http://m.flickr.com/#/search/advanced/_QM_q_IS_" + term);
  			}
  //			appear: $.PageView.Flickr.appear,
  //			disappear: $.PageView.Flickr.disappear
@@ -114,7 +122,7 @@ jQuery(function() {
 			contents: '<div id="bingLogo"></div><div id="bingBackground"></div>',
 			search: function(term){
 				term = term.replace(" ", "+");
-				window.location = "http://m.bing.com/search/search.aspx?q="+term+"&d=&dl=&a=results&a2=modifylocation&MID=10006&asq=&asems=";
+				openURL("http://m.bing.com/search/search.aspx?q="+term+"&d=&dl=&a=results&a2=modifylocation&MID=10006&asq=&asems=");
 			},
 			appear: $.PageView.Bing.appear,
 			disappear: $.PageView.Bing.disappear,
