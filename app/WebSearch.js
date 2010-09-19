@@ -1,9 +1,6 @@
 var debug = false;
 
-alert("Hello, world!");
-
 jQuery(function() {
-	alert("jQuery'd");
   var cache = [];
   // Arguments are image paths relative to the current page.
   $.preLoadImages = function() {
