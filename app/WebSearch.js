@@ -1,6 +1,9 @@
 var debug = false;
 
+alert("Hello, world!");
+
 jQuery(function() {
+	alert("jQuery'd");
   var cache = [];
   // Arguments are image paths relative to the current page.
   $.preLoadImages = function() {
@@ -133,7 +136,7 @@ jQuery(function() {
 //	$.WSLog ("pages.twitter.appear = " + pages[pages.length-1].appear);
 		
 	var searchList = $("#searchList");
-	$.get("WSPageView.js", function(){
+	$.getScript("WSPageView.js", function(){
 		searchList.PageView(pages);
 
 	   var hideTooltip = function(){
