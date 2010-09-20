@@ -18,6 +18,11 @@ builder.loadFiles(process.cwd(), function(files){
 	addLines("iPhone Graphics", files.iPhoneGraphics);
 	addLines("iPhone 4 Graphics", files.iPhone4Graphics);
 	addLines ("Misc.", files.meta);
+
+	lines.push("");
+	lines.push("NETWORK:");
+	lines.push("*");
+	lines.push("");
 	
 	fs.writeFile("WebSearch.manifest", lines.join("\n"));
 });
