@@ -117,7 +117,7 @@ jQuery(function() {
  //			appear: $.PageView.Flickr.appear,
  //			disappear: $.PageView.Flickr.disappear
 
-		},{ // Bing
+/*		},{ // Bing
 			id: "searchBing",
 			contents: '<div id="bingLogo"></div><div id="bingBackground"></div>',
 			search: function(term){
@@ -127,7 +127,7 @@ jQuery(function() {
 			appear: $.PageView.Bing.appear,
 			disappear: $.PageView.Bing.disappear,
 			setup: $.PageView.Bing.setup
-		}
+*/		}
 	];
 	
 //	$.WSLog ("pages.twitter.appear = " + pages[pages.length-1].appear);
@@ -140,6 +140,14 @@ jQuery(function() {
 	   	$("#tooltip").animateWithCSS({
 	   		top: -50
 	   	});
+		
+		var signature = $("#signature");
+		var height = 60;
+		var top = parseInt(signature.css("top"), 10);
+//		alert("Moving from " + top + " to " + (height + top) + " ( " + height + ")");
+		signature.animateWithCSS({
+			top: (height+top)
+		});
 	   	searchList[0].removeEventListener("touchstart",hideTooltip);
 	   }
 	   searchList[0].addEventListener("touchstart", hideTooltip);
@@ -168,7 +176,7 @@ jQuery(function() {
 	$("#searchButton").click(performSearch);
 	$("#searchForm").bind("submit", performSearch);
 	
-	$.get("WSSwitch.js", function(){
+	$.getScript("WSSwitch.js", function(){
 		var settingsBackground = $("#settingsBackground");
 		var bgSwitch = null;
 
@@ -239,6 +247,10 @@ jQuery(function() {
 	}, false);
 	updateCacheIndicator();
 //	$.WSLog("Search THIS ", searchField[0]);\n
+	
+	if(window.navigator.standalone){
+		$("#body").addClass("fullscreen");
+	}
 	
 	document.body.ontouchmove = function(event){
 		if(!debug){

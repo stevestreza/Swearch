@@ -205,6 +205,17 @@ $.fn.PageView = function(pages){
 			savedPage = parseInt(savedPage, 10);
 		}catch(e){
 		}
+		
+		$(window).bind("orientationchange", function(){
+			var orientation = window.orientation;
+			if(orientation == 0){
+				self.parent().css({width: 320, height: 460});
+				$("#contentPadding").css({display: "none"});
+			}else if(orientation == 90 || orientation == -90){
+				self.parent().css({width: 480, height: 300});
+				$("#contentPadding").css({display: "visible"});
+			}
+		})
 	});
 }
 })(jQuery);

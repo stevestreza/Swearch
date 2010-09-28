@@ -89,6 +89,7 @@ div{
 	height: 29px;
 	background-image: url(settings.png);
 	z-index:19;
+	display: none;
 }
 
 #settingsBackground{
@@ -116,11 +117,15 @@ div{
 	height: 2em;
 	position: relative;
 	left: 30px;
-	top: 175px;
+	top: 201px;
 	font-family: "Helvetica Neue";
-	color: white;
-	text-shadow: #000 0px 1px 1px;
-	font-size: 14px;
+	color: #333;
+	text-shadow: #666 0px 0px 1px;
+	font-size: 15px;
+}
+
+.fullscreen#body #signature {
+	top: 245px;
 }
 
 #signature #title{
@@ -128,7 +133,8 @@ div{
 }
 
 #signature a{
-	color: #95CBFF;
+	color: #4466FF;
+	font-weight: bold;
 	text-decoration: none;
 }
 
@@ -388,4 +394,5 @@ div{
 	z-index:19;
 	background-color: red;
 	border: 1px solid black;
+	display:none;
 }
