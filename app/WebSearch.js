@@ -57,15 +57,15 @@ jQuery(function() {
 		var alreadyHidden = $.WSConfig.get("HomeScreenHUDHidden");
 		if ((!window.navigator.standalone && alreadyHidden != "true")) {
 			$("#home-screen-hud").css({
-				top: 298,
+				top: 240,
 				opacity: 0
 			}).animateWithCSS({
-				top: 248,
+				top: 210,
 				opacity: 1
 			}, 1000).click(function(event){
 				$.WSConfig.set("HomeScreenHUDHidden",true);
 				$(this).animateWithCSS({
-					top: 208,
+					top: 180,
 					opacity: 0
 				})
 			}, 1000, "easeIn", function(){

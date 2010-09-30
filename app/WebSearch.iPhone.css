@@ -110,6 +110,7 @@ div{
 	top:361px;
 	width: 274px;
 	height: 62px;
+	z-index:100;
 }
 
 #signature{
@@ -275,8 +276,9 @@ div{
 	height:143px;
 	position:relative;
 	left:64px;
-	top:336px;
+	top:290px;
 	opacity: 0;
+	z-index: 100;
 }
 
 /* Clouds */
