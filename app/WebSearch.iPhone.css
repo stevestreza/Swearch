@@ -272,6 +272,7 @@ div{
 }
 
 #home-screen-hud{
+	display: none;
 	background-image: url(home-screen-hud.png);
 	width:190px;
 	height:143px;
