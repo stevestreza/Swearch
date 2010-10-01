@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html manifest="TestCache.manifest">
+	<head>
+		<link rel="stylesheet" type="text/css" href="WebSearch.iPhone.css"  media="only screen and (max-device-width: 480px)"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		
+		<style tpye="text/css">
+			#cacheIndicator {
+				display: block;
+				top: 120px;
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+		
+		<script type="text/javascript">
+		window.onload = function(){
+			var cacheIndicator = document.getElementById("cacheIndicator");
+			var appCache = window.applicationCache;
+			var updateCacheIndicator = function(ev){
+				var color = "red";
+				switch(window.applicationCache.status){
+					case 0: // uncached
+						color = "red";
+						break;
+					case 1: // idle
+						color = "green";
+						break;
+					case 2: // checking
+						color = "yellow";
+						break;
+					case 3: // downloading
+						color = "orange";
+						break;
+					case 4: // updateready
+						color = "white";
+						break;
+				}
+				cacheIndicator.style.backgroundColor = color;
+			}
+
+			appCache.addEventListener = function(key, fn){
+				appCache["on" + key] = fn;
+			}
+			
+			appCache.addEventListener('cached', updateCacheIndicator, false);
+			appCache.addEventListener('checking', updateCacheIndicator, false);
+			appCache.addEventListener('downloading', updateCacheIndicator, false);
+			appCache.addEventListener('noupdate', updateCacheIndicator, false);
+			appCache.addEventListener('progress', updateCacheIndicator, false);
+			appCache.addEventListener('updateready', updateCacheIndicator, false);
+			appCache.addEventListener('error', function(err){
+				var dict = {};
+				for(var key in err){
+					dict[key] = err[key];
+				}
+				alert("Error: " + JSON.stringify(dict));
+			}, false);
+			updateCacheIndicator();
+			};
+		</script>
+	</head>
+	<body>
+		<div id="cacheIndicator"></div>
+	</body>
+</html>
