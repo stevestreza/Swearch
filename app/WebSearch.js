@@ -75,7 +75,6 @@ jQuery(function() {
 	}
 	
 	var openURL = function(url){
-		alert("opening url " + url)
 		if($.WSConfig.get("WSOpenInSafari") == true){
 			window.location.href = url;
 		}else{
@@ -168,7 +167,7 @@ jQuery(function() {
 	
 	var performSearch = function(){
 		searchField.blur();
-		var searchTerm = escape(searchField[0].value);
+		var searchTerm = encodeURIComponent(searchField[0].value);
 		var page = pages[searchList[0].currentPageIndex];
 		page.search(searchTerm);
 		return false;
