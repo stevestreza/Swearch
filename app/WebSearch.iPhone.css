@@ -178,6 +178,7 @@ div{
 	height:460px;
 	float:left;
 	position:relative;
+	-webkit-transform: translate3d(0,0,0);
 }
 
 #searchGoogle{
