@@ -56,7 +56,8 @@ jQuery(function() {
 	var displayHomeScreenHUDIfNeeded = function(){
 		var alreadyHidden = $.WSConfig.get("HomeScreenHUDHidden");
 		if ((!window.navigator.standalone && alreadyHidden != "true")) {
-			$("#home-screen-hud").css({
+			var hud = $("#home-screen-hud");
+			hud.css({
 				top: 240,
 				opacity: 0
 			}).animateWithCSS({
@@ -64,12 +65,15 @@ jQuery(function() {
 				opacity: 1
 			}, 1000).click(function(event){
 				$.WSConfig.set("HomeScreenHUDHidden",true);
-				$(this).animateWithCSS({
+				hud.animateWithCSS({
 					top: 180,
 					opacity: 0
-				})
-			}, 1000, "easeIn", function(){
-				$(this).remove();
+				});
+				setTimeout(function(){
+					hud.css({
+						display: "none"
+					});
+				}, 500);
 			});
 		}
 	}

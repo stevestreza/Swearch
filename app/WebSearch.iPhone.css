@@ -116,9 +116,9 @@ div{
 #signature{
 	width: 260px;
 	height: 2em;
-	position: relative;
+	position: absolute;
 	left: 30px;
-	top: 201px;
+	top: 361px;
 	font-family: "Helvetica Neue";
 	color: #333;
 	text-shadow: #666 0px 0px 1px;
@@ -275,7 +275,7 @@ div{
 	background-image: url(home-screen-hud.png);
 	width:190px;
 	height:143px;
-	position:relative;
+	position:absolute;
 	left:64px;
 	top:290px;
 	opacity: 0;
