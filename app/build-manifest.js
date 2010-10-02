@@ -5,7 +5,7 @@ var fs = require('fs');
 var path = require('path');
 var builder = require('./builder');
 
-builder.loadFiles(process.cwd(), function(files){	
+var manifestContentsForDevice = function(deviceName, files){
 	var lines = ["CACHE MANIFEST","", "# " + new Date(),"", "CACHE:"];
 	
 	var addLines = function(name, newLines){
@@ -14,9 +14,8 @@ builder.loadFiles(process.cwd(), function(files){
 		lines.push("");
 	}
 	addLines("Scripts", files.scripts);
-	addLines("Stylesheets", files.stylesheets);
-	addLines("iPhone Graphics", files.iPhoneGraphics);
-	addLines("iPhone 4 Graphics", files.iPhone4Graphics);
+	addLines("" + deviceName + " Stylesheets", files["" + deviceName + "Stylesheets"]);
+	addLines("" + deviceName + " Graphics", files["" + deviceName + "Graphics"]);
 	addLines ("Misc.", files.meta);
 
 	lines.push("");
@@ -24,5 +23,15 @@ builder.loadFiles(process.cwd(), function(files){
 	lines.push("*");
 	lines.push("");
 	
-	fs.writeFile("WebSearch.manifest", lines.join("\n"));
+	return lines.join("\n");
+}
+
+builder.loadFiles(process.cwd(), function(files){
+	var devices = ["iPhone", "iPhone4"];
+	for(var device in devices){
+		var deviceName = devices[device];
+		var filename = "WebSearch." + deviceName + ".manifest";
+		sys.puts("Writing manifest file " + filename);
+		fs.writeFile(filename, manifestContentsForDevice(deviceName, files));		
+	}
 });

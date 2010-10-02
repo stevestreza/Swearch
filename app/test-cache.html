@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html manifest="TestCache.manifest">
+<html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="WebSearch.iPhone.css"  media="only screen and (max-device-width: 480px)"/>
 		<meta name="viewport" content="width=device-width, user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		
@@ -36,6 +35,9 @@
 					case 4: // updateready
 						color = "white";
 						break;
+					case 5: //
+						color = "brown";
+						break;
 				}
 				cacheIndicator.style.backgroundColor = color;
 			}
@@ -58,7 +60,7 @@
 				alert("Error: " + JSON.stringify(dict));
 			}, false);
 			updateCacheIndicator();
-			};
+		};
 		</script>
 	</head>
 	<body>

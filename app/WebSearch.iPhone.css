@@ -79,6 +79,7 @@ div{
 	top:  5px;
 	position:absolute;
 	z-index:50;
+	background-image:url(searchButton.png);
 }
 
 #settingsButton{
