@@ -1,11 +1,69 @@
-<html>
-<body>
-	<script type="text/javascript">
-		if(window.devicePixelRatio == 2){
-			window.location.replace("index.iPhone4.html");
-		}else{
-			window.location.replace("index.iPhone.html");
-		}
-	</script>
-</body>
+<!DOCTYPE html>
+<html manifest="WebSearch.manifest">
+	<head>
+		<title>Swearch</title>
+
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="jquery.cross-slide.min.js"></script>
+		<script type="text/javascript" src="jquery.pause.min.js"></script>
+		<script type="text/javascript" src="jquery.cssAnimate.js"></script>
+		<script type="text/javascript" src="WebSearch.js"></script>
+		<script type="text/javascript" src="WSVelocityTracker.js"></script>
+		<script type="text/javascript" src="WebSearch.Flickr.js"></script>
+		<script type="text/javascript" src="WebSearch.Bing.js"></script>
+		<script type="text/javascript" src="WebSearch.Twitter.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="WebSearch.css" />
+		<link rel="stylesheet" type="text/css" href="WebSearch.iPhone.css"  media="only screen and (max-device-width: 480px)"/>
+		<link rel="stylesheet" type="text/css" href="WebSearch.iPhone4.css" media="only screen and (-webkit-min-device-pixel-ratio: 2)" />
+		<link rel="apple-touch-icon-precomposed" href="apple-touch-icon@2x.png"/>
+		<link rel="apple-touch-startup-image" href="splashimage.png">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</head>
+	<body>
+		<div id="body">
+		<div id="content">
+			<div id="searchList"></div>
+		</div>
+		<div id="searchBar">
+			<form id="searchForm">
+				<input name="searchField" id="searchField" type="text"/>
+			</form>
+			<div id="searchButton"></div>
+		</div>
+		<div id="tooltip">psst! swipe your finger left or right on this page!</div>
+		<div id="home-screen-hud"></div>
+		<div id="settingsBackground">
+			<div class="switch" id="openInSafari"></div>
+		</div>
+		<div id="settingsButton"></div>
+		<div id="debug"></div>
+		<div id="cacheIndicator"></div>
+		
+		<div id="signature">
+			<div class="left">
+				<a href="http://swearch.posterous.com/" id="title">Swearch</a> 1.0.1<br/>
+				by <a href="http://stevestreza.com/">Steve Streza</a>
+			</div>
+			<div class="right">
+				Last updated: 10/1
+			</div>
+		</div>
+
+		<!-- Piwik -->
+		<script type="text/javascript">
+		var pkBaseURL = (("https:" == document.location.protocol) ? "https://www.stevestreza.com/searchapp/piwik/" : "http://www.stevestreza.com/searchapp/piwik/");
+		document.write(unescape("%3Cscript src='" + pkBaseURL + "piwik.js' type='text/javascript'%3E%3C/script%3E"));
+		</script><script type="text/javascript">
+		try {
+		var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 2);
+		piwikTracker.trackPageView();
+		piwikTracker.enableLinkTracking();
+		} catch( err ) {}
+		</script><noscript><p><img src="http://www.stevestreza.com/searchapp/piwik/piwik.php?idsite=2" style="border:0" alt="" /></p></noscript>
+		<!-- End Piwik Tag -->
+	</body>
+	</div>
 </html>

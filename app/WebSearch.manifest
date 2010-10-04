@@ -1,0 +1,84 @@
+CACHE MANIFEST
+
+# Sat Sep 18 2010 15:56:22 GMT-0700 (PDT)
+
+CACHE:
+# Scripts
+builder.js
+jquery.cross-slide.min.js
+jquery.easing.1.3.js
+jquery.js
+jquery.pause.min.js
+WebSearch.Bing.js
+WebSearch.Flickr.js
+WebSearch.js
+WebSearch.Twitter.js
+WSPageView.js
+WSSwitch.js
+WSVelocityTracker.js
+
+# Stylesheets
+jquery.cssAnimate.js
+WebSearch.css
+WebSearch.iPhone.css
+WebSearch.iPhone4.css
+
+# iPhone Graphics
+app-signature.png
+apple-touch-icon-full.png
+apple-touch-icon.png
+bing-bg.jpg
+bing-logo.png
+cloud1-1.png
+cloud1-2.png
+cloud1-3.png
+cloud2-1.png
+cloud2-2.png
+cloud2-3.png
+cloud3-1.png
+cloud3-2.png
+cloud3-3.png
+flickr-logo.png
+google-bg.png
+google-logo.png
+home-screen-hud.png
+searchBG.png
+searchButton.png
+settings-popup.png
+settings.png
+switch-background.png
+switch-handle.png
+twitter-logo.png
+twitter-search.png
+wikipedia-bg.png
+
+# iPhone 4 Graphics
+app-signature@2x.png
+apple-touch-icon@2x.png
+bing-bg@2x.jpg
+bing-logo@2x.png
+cloud1-1@2x.png
+cloud1-2@2x.png
+cloud1-3@2x.png
+cloud2-1@2x.png
+cloud2-2@2x.png
+cloud2-3@2x.png
+cloud3-1@2x.png
+cloud3-2@2x.png
+cloud3-3@2x.png
+flickr-logo@2x.png
+google-bg@2x.png
+google-logo@2x.png
+home-screen-hud@2x.png
+searchBG@2x.png
+searchButton@2x.png
+settings-popup@2x.png
+settings@2x.png
+switch-background@2x.png
+switch-handle@2x.png
+twitter-logo@2x.png
+twitter-search@2x.png
+wikipedia-bg@2x.png
+
+# Misc.
+index.html

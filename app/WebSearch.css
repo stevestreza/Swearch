@@ -6,3 +6,7 @@ body{
 .clear{
 	clear:both;
 }
+
+#searchButton{
+	background-image:url(searchButton.png);
+}
