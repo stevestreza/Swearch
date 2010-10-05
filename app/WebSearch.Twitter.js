@@ -108,9 +108,9 @@ $.PageView.Twitter = {
 			var left = start + (spacing * index) + $.randomBetween(0-variance, variance);
 			return left;
 		}
-
+		
 		for(var i=0; i < $.PageView.Twitter.numberOfClouds; i++){
-			var depth = i % 3;
+			var depth = (i % 3) + 1;
 			var variant = $.randomBetween(1,3);
 			var cloudID = "cloud" + variant + (depth == 0 ? "" : "-" + depth);
 //			$.WSLog("cloudID: " + cloudID + "@2x.png" + " at " + (100+(-25 * depth)) + "% speed/depth");
@@ -121,7 +121,7 @@ $.PageView.Twitter = {
 			var cssOpts = {
 				position: "absolute",
 				"-webkit-transform": "translate3D(" + leftPositionForIndex(i, $.PageView.Twitter.numberOfClouds) + "px, 0px, 0px)",
-				top: 200-(50 * depth) + $.randomBetween(-20,20),
+				top: 180-(50 * depth) + $.randomBetween(-20,20),
 				zIndex: 100 - (depth * 20)
 //				"-webkit-transform": "scaleX(" + (($.randomBetween(0,1) * 2)-1) + ")"
 			};

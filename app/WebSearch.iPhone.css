@@ -299,10 +299,50 @@ div{
 	display: block;
 	left:0px;
 	top:0px;
+	background-image: url(cloudmap.png);
+	width: 302px;
+	height: 240px;
 	-webkit-transition-property: -webkit-transform;
 	-webkit-transform: translate3D(0px, 0px, 0px);
 }
 
+.cloud1-1{
+	background-position: 0px 0px;
+}
+
+.cloud1-2{
+	background-position: -302px 0px;
+}
+
+.cloud1-3{
+	background-position: -604px 0px;
+}
+
+.cloud2-1{
+	background-position: 0px -240px;
+}
+
+.cloud2-2{
+	background-position: -302px -240px;
+}
+
+.cloud2-3{
+	background-position: -604px -240px;
+}
+
+.cloud3-1{
+	background-position: 0px -480px;
+}
+
+.cloud3-2{
+	background-position: -302px -480px;
+}
+
+.cloud3-3{
+	background-position: -604px -480px;
+}
+
+/*
 .cloud1-1{
 	background-image: url(cloud1-1.png);
 	width: 314px;
@@ -356,7 +396,7 @@ div{
 	width: 135px;
 	height: 102px;
 }
-
+*/
 .switch{
 	width: 57px;
 	height: 24px;
