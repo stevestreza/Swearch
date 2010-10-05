@@ -34,28 +34,30 @@ var loadFiles = exports.loadFiles = function(loadPath, cb){
 			function(thePath){
 				return (thePath == path.basename(process.argv[1]));
 			},
-			matcherForRegex(/builder\.js/),
-			matcherForRegex(/test-cache\.html/),
-			matcherForRegex(/index-dev\.html/)
+			matcherForRegex(/builder\.js$/),
+			matcherForRegex(/test-cache\.html$/),
+			matcherForRegex(/index-dev\.html$/)
 		],
 		iPhone4Graphics: [
-			matcherForRegex(/.*\@2x\.(jpg|png)/),
-			matcherForRegex(/splashimage\.png/)
+			matcherForRegex(/.*\@2x\.(jpg|png)$/),
+			matcherForRegex(/splashimage\.png$/)
 		],
 		iPhoneGraphics: [
-			andOp(matcherForRegex(/.+\.(jpg|png)/), notOp(matcherForRegex(/.*\@2x\.(jpg|png)/)))
+			andOp(matcherForRegex(/.+\.(jpg|png)$/), notOp(matcherForRegex(/.*\@2x\.(jpg|png)$/)))
 		],
 		iPhoneStylesheets: [
-			matcherForRegex(/.*\.iPhone\.css/)
+			matcherForRegex(/.*\.iPhone\.css/),
+			andOp(matcherForRegex(/.*\.css$/), notOp(matcherForRegex(/.*\.iPhone4\.css/)))
 		],
 		iPhone4Stylesheets: [
-			matcherForRegex(/.*\.iPhone4\.css/)
+			matcherForRegex(/.*\.iPhone4\.css$/),
+			andOp(matcherForRegex(/.*\.css$/), notOp(matcherForRegex(/.*\.iPhone\.css/)))
 		],
 		scripts: [
-			matcherForRegex(/.*\.js/)
+			matcherForRegex(/.*\.js$/)
 		],
 		meta: [
-			matcherForRegex(/.*\.html/)
+			matcherForRegex(/.*\.html$/)
 		]
 	};
 	
